@@ -1,7 +1,14 @@
-h1, #start-game {
+body {
     background-color: #000000;
-    color: #FFFFFF;
-    text-align: center;
+    color: #CCCCCC;
+}
+
+.Greeting {
+	text-align: center;
+}
+
+.Scoreboard {
+	text-align: left;
 }
 
 #game-board img {

@@ -1,15 +1,30 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
         <meta charset="UTF-8">
 		<title>Memory!</title>
 	</head>
 	<body>
-		<h1>Memory!</h1>
-		<p><button id="start-game">Start New Game</button></p>
-
-        <p>Elapsed Time: <span id="elapsed-seconds"></span></span></p>
+		<div class="Greeting">
+			<h1>Memory!</h1>
+			<p><button id="start-game">Start New Game</button></p>
+		</div>
+			<div class="row Scoreboard">
+				<div class="col-md-3">
+        	<p>Elapsed Time: <span id="elapsed-seconds"></span></span></p>
+        		</div>
+        		<div class="col-md-3">
+    		<p>Matches: </p>
+    			</div>
+    			<div class="col-md-3">
+    		<p>Remaining Pairs: </p>
+    			</div>
+    			<div class="col-md-3">
+    		<p>Attempts: </p>
+    			</div>
+    	</div>
 
 		<div id="game-board"></div>
 	
