@@ -1,14 +1,18 @@
 body {
-    background-color: #000000;
-    color: #CCCCCC;
+	background-color: #000000;
+	color: #FFFFFF;
 }
 
 .Greeting {
 	text-align: center;
 }
 
-.Scoreboard {
-	text-align: left;
+.Scoreboard  {
+	font-size: 20;
+}
+
+#start-game {
+	color: #000000;
 }
 
 #game-board img {
