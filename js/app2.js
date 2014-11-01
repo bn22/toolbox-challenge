@@ -58,29 +58,20 @@ $(document).ready(function() {
             var tile = clickedImg.data('tile');
             flipTile(tile, clickedImg);
         });
-        endGame()
     }); //start game button click
 }); //document ready function
 
 function flipTile(tile, img) {
-    window.setTimeout(function () {
-        img.fadeOut(100, function() {
-            if (tile.flipped) {
-                img.attr('src', 'img/tile-back.png');
-            }
-            else {
-                img.attr('src', tile.src);
-            }
-            tile.flipped = !tile.flipped;
-            img.fadeIn(100);
-        });
-    }, 100);
+    img.fadeOut(100, function() {
+        if (tile.flipped) {
+            img.attr('src', 'img/tile-back.png');
+        }
+        else {
+            img.attr('src', tile.src);
+        }
+        tile.flipped = !tile.flipped;
+        img.fadeIn(100);
+    });
 }
 
-function endGame() {
-    var matchesFound = document.getElementsbyID('matches-found').value
-    if (matchesFound == 8) {
-        window.clearInterval(elapsedSeconds);
-    }
-    console.log(matchesFound)
-}
+
