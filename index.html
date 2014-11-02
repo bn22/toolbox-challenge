@@ -7,27 +7,32 @@
 		<title>Memory Game</title>
 	</head>
 	<body>
-		<div class="Greeting">
-			<h1>Memory!</h1>
-			<p><button id="start-game">Start New Game</button></p>
-		</div>
-			<div class="row Scoreboard">
-				<div class="col-md-3">
-        	<p>Elapsed Time: <span id="elapsed-seconds"></span></p>
-        		</div>
-        		<div class="col-md-3">
-    		<p id="matches-found" name="matches-found">Matches: </p>
-    			</div>
-    			<div class="col-md-3">
-    		<p>Remaining Pairs: <span id="remaining-pair"></span></p>
-    			</div>
-    			<div class="col-md-3">
-    		<p>Attempts: <span id="attempts-made"></span></p>
-    			</div>
-    	</div>
+		<div class="container">
+			<div class="row Greeting">
+				<h1>Memory Game</h1>
+				<p><button id="start-game">Start New Game</button></p>
+			</div>
+				<div class="row Scoreboard">
+					<div class="col-md-3">
+        				<p>Elapsed Time: <span id="elapsed-seconds"></span></p>
+        			</div>
+        			<div class="col-md-3">
+    					<p>Matches: <span id="matches-found"></span></p>
+    				</div>
+    				<div class="col-md-3">
+    					<p >Remaining Pairs: <span id="remaining-pair"></span></p>
+    				</div>
+    				<div class="col-md-3">
+    					<p>Attempts: <span id="attempts-made"></span></p>
+    				</div>
+    				</div>
 
 		<div id="game-board"></div>
-	
+
+		<div class="help">
+			<p><button id="help-button">Instructions</button></p>
+		</div>
+
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
 		<script src="js/app.js"></script>

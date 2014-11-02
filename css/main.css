@@ -3,16 +3,24 @@ body {
 	color: #FFFFFF;
 }
 
-.Greeting {
-	text-align: center;
+.Scoreboard  {
+	font-size: 16px;
 }
 
-.Scoreboard  {
-	font-size: 20;
+#start-game, #help-button {
+	color: #000000;
+}
+
+.help {
+	position: absolute;
+	top: 5%;
+	right: 5%;
 }
 
 #start-game {
-	color: #000000;
+	position: absolute;
+	top:5%;
+	left:5%;
 }
 
 #game-board img {
