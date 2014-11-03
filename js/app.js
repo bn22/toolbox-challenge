@@ -53,7 +53,7 @@ $(document).ready(function() {
             $('#attempts-made').text(attempts);
             if (remainingPairs == 0) {
                 resetScoreboard();
-                $('#win-message').text('Congratulation, you have beaten the Memory Game!')
+                $('#win-message').text('Congratulation, you have beaten the Memory Game!').fadeIn(100)
             }
         }, 1000);
 
@@ -68,7 +68,7 @@ $(document).ready(function() {
 }); //document ready function
 
 function flipTile(tile, img) {
-    //window.setTimeout(function () {
+    window.setTimeout(function () {
         if (tile.matched == false) {
             img.fadeOut(100, function() {
                 if (tile.flipped) {
@@ -81,28 +81,33 @@ function flipTile(tile, img) {
                 img.fadeIn(100);
             });
         }
-   // }, 100);
+    }, 10);
 }
 
 function createTurn(tile, img) {
     flippedTiles.push(tile);
-    flippedImg.push(img);
-    window.setTimeout( function() {
+    flippedImg.push(img)
+    console.log(flippedTiles)
+    window.setTimeout(function() {
         if (flippedTiles.length == 2) {
             if (flippedTiles[1].tileNum == flippedTiles[0].tileNum) {
                 matchedPairs = matchedPairs + 1;
                 remainingPairs = remainingPairs - 1;
-                var firstTile = flippedTiles[0];
-                var secondTile = flippedTiles[1];
-                firstTile.matched = true;
-                secondTile.matched = true;
-                flippedImg[0].attr('src', firstTile.src);
-                flippedImg[1].attr('src', secondTile.src);
+                flippedTiles[0].matched = true;
+                flippedTiles[1].matched = true;
+                flippedTiles[0].flipped = true;
+                flippedTiles[1].flipped = true;
+                flippedImg[0].attr('src', flippedTiles[0].src);
+                flippedImg[1].attr('src', flippedTiles[1].src);
             }    
             else { //flippedTiles don't match
                 attempts = attempts + 1;
-                flippedImg[0].attr('src','img/tile-back.png')
-                flippedImg[1].attr('src','img/tile-back.png')    
+                flippedTiles[0].matched = false;
+                flippedTiles[1].matched = false;
+                flippedTiles[0].flipped = false;
+                flippedTiles[1].flipped = false;
+                flippedImg[0].attr('src','img/tile-back.png');
+                flippedImg[1].attr('src','img/tile-back.png');  
             }
             flippedTiles = [];
             flippedImg = [];
