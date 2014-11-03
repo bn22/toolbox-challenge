@@ -3,6 +3,11 @@ body {
 	color: #FFFFFF;
 }
 
+body h1{
+	text-align: center;
+	font-size: 20;
+}
+
 .Scoreboard  {
 	font-size: 16px;
 }
@@ -28,4 +33,9 @@ body {
     height: 25%;
     padding: 5px;
     box-sizing: border-box;
+}
+
+#win-message {
+	text-align: Center;
+	font-size: 40;
 }

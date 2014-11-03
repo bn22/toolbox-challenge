@@ -11,12 +11,13 @@ for (idx = 1; idx <= 32; idx++) {
         matched: false,
     });
 } //for each tile
-var previousTile = '';
 var attempts = 0;
 var matchedPairs = 0;
 var remainingPairs = 8;
 var elapsedSeconds = 0;
-var timer = 0;
+var timer;
+var flippedTiles = [];
+var flippedImg = [];
 
 //Creates Instruction button that informs the user about how to play the Memory Game
 var exit = document.getElementById('help-button');
@@ -52,6 +53,7 @@ $(document).ready(function() {
             $('#attempts-made').text(attempts);
             if (remainingPairs == 0) {
                 resetScoreboard();
+                $('#win-message').text('Congratulation, you have beaten the Memory Game!')
             }
         }, 1000);
 
@@ -60,43 +62,52 @@ $(document).ready(function() {
             var clickedImg = $(this);
             var tile = clickedImg.data('tile');
             flipTile(tile, clickedImg);
-            checkPairs(tile);
+            createTurn(tile, clickedImg);
         });
     }); //start game button click
 }); //document ready function
 
 function flipTile(tile, img) {
-    window.setTimeout(function () {
-        img.fadeOut(100, function() {
-            if (tile.flipped) {
-                img.attr('src', 'img/tile-back.png');
-            }
-            else {
-                img.attr('src', tile.src);
-            }
-            tile.flipped = !tile.flipped;
-            img.fadeIn(100);
-        });
-    }, 100);
+    //window.setTimeout(function () {
+        if (tile.matched == false) {
+            img.fadeOut(100, function() {
+                if (tile.flipped) {
+                    img.attr('src', 'img/tile-back.png');
+                }
+                else {
+                    img.attr('src', tile.src);
+                }
+                tile.flipped = !tile.flipped;
+                img.fadeIn(100);
+            });
+        }
+   // }, 100);
 }
 
-function checkPairs(tile) {
-    window.setTimeout(function () {
-        if (previousTile != '') {
-            if (previousTile.tileNum == tile.tileNum) {
+function createTurn(tile, img) {
+    flippedTiles.push(tile);
+    flippedImg.push(img);
+    window.setTimeout( function() {
+        if (flippedTiles.length == 2) {
+            if (flippedTiles[1].tileNum == flippedTiles[0].tileNum) {
                 matchedPairs = matchedPairs + 1;
                 remainingPairs = remainingPairs - 1;
-                tile.matched = true;
-                previousTile.matched = true;
-            } else {
-                attempts = attempts + 1
+                var firstTile = flippedTiles[0];
+                var secondTile = flippedTiles[1];
+                firstTile.matched = true;
+                secondTile.matched = true;
+                flippedImg[0].attr('src', firstTile.src);
+                flippedImg[1].attr('src', secondTile.src);
+            }    
+            else { //flippedTiles don't match
+                attempts = attempts + 1;
+                flippedImg[0].attr('src','img/tile-back.png')
+                flippedImg[1].attr('src','img/tile-back.png')    
             }
-            previousTile = '';
-        }
-        else {
-            previousTile = tile;
-        }
-    }, 100);
+            flippedTiles = [];
+            flippedImg = [];
+        } 
+    }, 1000);
 }
 
 function createBoard(tilePairs) {
@@ -129,9 +140,6 @@ function resetScoreboard() {
     elapsedSeconds = 0;
     attempts = 0;
     remainingPairs = 8;
-    matchedPairs = 0;     
+    matchedPairs = 0;
 }
 
-function ifMatched() {
-
-}
