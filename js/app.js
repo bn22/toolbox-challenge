@@ -68,26 +68,23 @@ $(document).ready(function() {
 }); //document ready function
 
 function flipTile(tile, img) {
-    window.setTimeout(function () {
-        if (tile.matched == false) {
-            img.fadeOut(100, function() {
-                if (tile.flipped) {
-                    img.attr('src', 'img/tile-back.png');
-                }
-                else {
-                    img.attr('src', tile.src);
-                }
-                tile.flipped = !tile.flipped;
-                img.fadeIn(100);
-            });
-        }
-    }, 10);
+    if (tile.matched == false) {
+        img.fadeOut(100, function() {
+            if (tile.flipped) {
+                img.attr('src', 'img/tile-back.png');
+            }
+            else {
+                img.attr('src', tile.src);
+            }
+            tile.flipped = !tile.flipped;
+            img.fadeIn(100);
+        });
+    }
 }
 
 function createTurn(tile, img) {
     flippedTiles.push(tile);
     flippedImg.push(img)
-    console.log(flippedTiles)
     window.setTimeout(function() {
         if (flippedTiles.length == 2) {
             if (flippedTiles[1].tileNum == flippedTiles[0].tileNum) {
@@ -99,7 +96,7 @@ function createTurn(tile, img) {
                 flippedTiles[1].flipped = true;
                 flippedImg[0].attr('src', flippedTiles[0].src);
                 flippedImg[1].attr('src', flippedTiles[1].src);
-            }    
+            }
             else { //flippedTiles don't match
                 attempts = attempts + 1;
                 flippedTiles[0].matched = false;
@@ -127,7 +124,7 @@ function createBoard(tilePairs) {
         img = $(document.createElement('img'));
         img.attr({
             src: 'img/tile-back.png',
-            alt: 'tile ' + tile.tileNum
+            alt: 'tile ' + tile.tileNum,
         });
         img.data('tile', tile);
         row.append(img);
@@ -147,4 +144,3 @@ function resetScoreboard() {
     remainingPairs = 8;
     matchedPairs = 0;
 }
-
